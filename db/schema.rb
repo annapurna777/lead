@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_08_05_110458) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "admins", force: :cascade do |t|
     t.integer "mobile_number"
     t.string "email"
@@ -33,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_08_05_110458) do
     t.string "name"
     t.string "docf"
     t.string "docb"
-    t.integer "admin_id"
+    t.bigint "admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "lead_type"
@@ -46,10 +49,12 @@ ActiveRecord::Schema.define(version: 2019_08_05_110458) do
   create_table "nominees", force: :cascade do |t|
     t.string "name"
     t.integer "age"
-    t.integer "leader_id"
+    t.bigint "leader_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["leader_id"], name: "index_nominees_on_leader_id"
   end
 
+  add_foreign_key "leaders", "admins"
+  add_foreign_key "nominees", "leaders"
 end

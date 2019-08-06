@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   post 'sessions/email_verification'
   get 'sessions/login_method'
   #post 'sessions/phone_verification'
-  root 'sessions#new'
+  root 'sessions#login_method'
   get 'sessions/email_verify'
   patch 'leaders/make_client'
   get 'leaders/show'

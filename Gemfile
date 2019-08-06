@@ -6,9 +6,12 @@ ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
 # Use sqlite3 as the database for Active Record
-group :development do 
-   gem 'sqlite3', '~> 1.4', '>= 1.4.1'    #gem to use in development environment
-end
+#group :development do 
+ #  gem 'sqlite3', '~> 1.4', '>= 1.4.1'    #gem to use in development environment
+#end
+#group :production do
+ gem 'pg', '~> 1.1', '>= 1.1.4'
+#end
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -36,6 +39,7 @@ gem 'envyable'
 gem 'authy'
 gem 'time_difference', '~> 0.7.0'
 gem 'jquery-turbolinks'
+
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
