@@ -1,0 +1,11 @@
+<p id='notice'><%= notice %></p>
+<p id=”alert”><%= alert %></p><h1>Login</h1>
+<%=form_for(:session, url: sessions_otp_verify_path) do |f| %>
+  <div class=”field”>
+    <%= f.label :otp %>
+    <%= f.text_field :otp %>
+  </div>
+  <p>
+  	<%= f.submit "Submit otp" %>
+  </p>
+  <% end %>

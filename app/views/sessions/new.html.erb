@@ -1,0 +1,29 @@
+<p id='notice'><%= notice %></p>
+<p id=”alert”><%= alert %></p><h1>Login</h1>
+<%=form_for(:session, url: sessions_create_path) do |f| %>
+  <div class=”field”>
+    <% if @method=="user_name"%>
+    <%= f.label :user_name %>
+    <%= f.text_field :user_name%>
+    <% elsif @method=="mobile"%>
+    <%= f.label :mobile_number %>
+    <%= f.text_field :mobile%>
+    <% elsif @method=="email"%>
+    <%= f.label :email %>
+    <%= f.text_field :email%>
+    <% end %>
+      </div>
+  <div class=”field”>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+
+  
+ <div>
+ 	<%= f.submit 'Login' %>
+ 		
+ </div>
+
+<% end %>
+<p><%= link_to 'Forgot password?', passwords_new_path %></p>
+<%= link_to 'Sign_up', admins_signup_path %>

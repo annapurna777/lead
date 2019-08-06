@@ -1,0 +1,14 @@
+ <h1>How will you like to login? </h1>
+
+<%= form_tag(root_url, method: :get) do -%>
+ <div>
+    <p>Login method</p>
+    <%= label_tag "method_email", "Email: " %>
+    <%= radio_button_tag "method", "email" %>
+    <%= label_tag "method_mobile", "Mobile_Number: " %>
+    <%= radio_button_tag "method", "mobile" %>
+    <%= label_tag "method_user_name", "User_Name: " %>
+    <%= radio_button_tag "method", "user_name" %>
+  </div>
+  <%= button_tag "Choose" %>
+<% end %>

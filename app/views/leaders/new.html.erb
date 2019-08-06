@@ -1,0 +1,97 @@
+<p id='notice'><%= notice %></p>
+<%=form_with scope: :leader,html: {id: "new_leader"},validate: true,url: leaders_create_path,local: true do |form| %>
+<h1 style="color:blue">Create new lead</h1>
+
+	
+    <p><%=form.label :Name%><br>
+	<%=form.text_field :name%></p>
+    <p></p>
+
+     <p><%=form.label :Document_front%><br>
+	<%=form.file_field :docf%></p>
+    <p></p>
+
+     <p><%=form.label :Document_back%><br>
+	<%=form.file_field :docb%></p>
+    <p></p>
+
+    <p><%=form.label :Lead_type%><br>
+    <%= form.select :lead_type, [ 'Company','Individual' ], :prompt => 'Select One' %>
+    <p></p>
+
+    <p><%=form.label :Account_number%><br>
+	<%=form.text_field :account_number%></p>
+    <p></p>
+    
+    
+   
+	<p><%= form.submit %></p>
+	<% end %>
+	<% if !(current_user.present?)%>
+	<%= link_to 'Sign_in', login_path %>
+	<%= link_to 'Sign_up', admins_signup_path %>
+	<% end %>
+
+
+<!-- <script type="text/javascript">
+$(document).ready(function(){
+
+$('#new_leader').on('change', 'input', function(event) {
+  validateForm('#new_leader');
+});
+
+
+$("#new_leader").validate({
+
+rules: {
+	"leader[name]": {
+		required: true,
+		minlength:3,
+		maxlength:20,
+		//pattern: "/[a-zA-Z]+/"
+	},
+
+	
+
+	messages: {
+		"admin[first_name]": {
+		required: "This field is required",
+		minlength:"Can't be less than 3 characters",
+		maxlength:"Can't be more than 20 characters",
+		pattern: "No special characters,spaces,and numbers"
+	},
+
+	"admin[last_name]": {
+		pattern: "No special characters,spaces,and numbers"
+	},
+
+	"admin[email]": {
+		required: "This field is required",
+		email: "Invalid format!"
+	},
+
+	"admin[password]":{
+		required: "This field is required",
+		minlength: "Should contain atleast five characters",
+		maxlength:"Not more than 15 characters"
+	},
+
+	"admin[password_confirmation]":{
+		required: "This field is required",
+		equalTo: "Password and password confirmation must match!"
+	},
+
+	"admin[mobile_number]":{
+		required: "This field is required"
+	}
+
+	}
+}
+
+
+});
+});
+ 
+</script>
+    
+ -->

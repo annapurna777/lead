@@ -1,0 +1,26 @@
+<h1>Listing Clients</h1>
+<%= link_to 'Back', leaders_path %> 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Front_Document</th>
+    <th>Back_Document</th>
+    <th>Type</th>
+    <th>Account_Number</th>
+    <th>Time_taken</th>
+
+    <th></th>
+  </tr>
+ 
+  <% @clients.each do |client| %>
+    <tr>
+      <td><%= client.name %></td>
+      <td><%= image_tag client.docf.url,size: "100x100" %></td>
+      <td><%= image_tag client.docb.url,size: "100x100" %></td>
+      <td><%= client.lead_type %></td>
+      <td><%= client.account_number %></td>
+      <td><%= client.made_at[:years].to_s+" years ,"+client.made_at[:months].to_s+" months ,"+client.made_at[:days].to_s+" days ," +client.made_at[:hours].to_s+" hours ,"+client.made_at[:minutes].to_s+" minutes ,"+client.made_at[:seconds].to_s+" seconds"%></td>
+      
+    </tr>
+  <% end %>
+</table>

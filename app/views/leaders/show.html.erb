@@ -1,0 +1,66 @@
+<!-- <p id='notice'><%= notice %></p> -->
+<%#= "Logged in as:"+@admin.user_name %>
+<p>
+  <strong>Name:</strong>
+  <%= @leader.name %>
+</p>
+ 
+
+<p>
+  <strong>Front_Document:</strong>
+  <%= image_tag @leader.docf.url,size: "100x100" %>
+</p>
+ 
+<p>
+  <strong>Back_Document:</strong>
+<%= image_tag @leader.docb.url,size: "100x100" %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @leader.lead_type %>
+</p>
+ 
+<p>
+  <strong>Account_Number:</strong>
+  <%= @leader.account_number %>
+</p>
+<h2>Nominees</h2>
+<% @leader.nominees.each do |nominee| %>
+  <p>
+    <strong>Name:</strong>
+    <%= nominee.name %>
+  </p>
+ 
+  <p>
+    <strong>Age:</strong>
+    <%= nominee.age %>
+  </p>
+  <p>
+    <%= label_tag ,value="-------------------------------------------" %>
+  </p>
+<% end %>
+
+ 
+<h2>Add a nominee:</h2>
+<%= form_with(model: [ @leader, @leader.nominees.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :Name %><br>
+    <%= form.text_field :name %>
+  </p>
+  <p>
+    <%= form.label :Age %><br>
+    <%= form.text_field :age %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+ 
+
+<%= link_to 'Back', leaders_path %>
+
+
+ 
+
+<%= link_to 'log_out', sessions_destroy_path %>

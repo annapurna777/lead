@@ -1,0 +1,34 @@
+<h1>Verify your phone number</h1>
+
+<%= form_tag(phone_verifications_path, method: :post) do -%>
+  <% if @response %>
+    <% @response.errors.each do |key, message| %>
+      <p><%= message %></p>
+    <% end %>
+  <% end %>
+  <div>
+    <%= label_tag "authy-countries", "Country code:" %>
+    <% if @user.country_code.present? %>
+    <%= text_field_tag :country_code, @user.country_code, class: "uneditable-input", :readonly => true %>
+    <%#= text_field_tag :country_code, value: @user.country_code, readonly: true%>
+    <% else %>
+    <%= select_tag "authy-countries", nil, name: 'country_code', 'data-show-as': 'number' %>
+    <% end %>
+  </div>
+  <div>
+    <%= label_tag "mobile_number", "Mobile number:" %>
+    <% if @user.mobile_number.present? %>
+    <%= text_field_tag :mobile_number, @user.mobile_number, class: "uneditable-input", :readonly => true %>
+     <% else %>
+    <%= telephone_field_tag "mobile_number", nil, name: 'mobile_number' %>
+     <% end %>
+  </div>
+  <div>
+    <p>Verification method</p>
+    <%= label_tag "method_sms", "SMS: " %>
+    <%= radio_button_tag "method", "sms" %>
+    <%= label_tag "method_call", "Call: " %>
+    <%= radio_button_tag "method", "call" %>
+  </div>
+  <%= button_tag "Verify" %>
+<% end -%>

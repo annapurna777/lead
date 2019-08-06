@@ -1,0 +1,39 @@
+<h1> List of Leads </h1>
+<%= link_to 'New lead', leaders_new_path %>
+<%= link_to 'Clients', leaders_clients_path if current_user.present? %>
+<%= link_to 'Back', dashboard_path if current_user.present? %>
+<%= link_to 'log_out', sessions_destroy_path if current_user.present? %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Document front</th>
+    <th>Document back</th>
+    <th>Type</th>
+    <th>Account_number</th>
+    <th>Nominees</th>
+    <th>Client of</th>
+  </tr>
+ 
+  <% @leaders.each do |lead| %>
+    <tr>
+      <td><%= lead.name %></td>
+      <td><%= image_tag lead.docf.url,size: "100x100"  if lead.docf_url %></td>
+      <td><%= image_tag lead.docb.url,size: "100x100" if lead.docf_url %></td>
+      <td><%= lead.lead_type %></td>
+      <td><%= lead.account_number %></td>
+      
+      
+      <td><% if current_user.present? %>
+      <%= link_to 'Show', leaders_show_path(lead) %></td>
+      <% if lead.made_by.present? %>
+     <!--  <td><%#= label_tag ,value="Already_client" %></td> -->
+      <td><%= Admin.find_by(id: lead.made_by).user_name %></td>
+      <% else %>
+      <td><%= link_to 'make_client', leaders_make_client_path(lead), method: :patch %></td>
+      <% end %>
+      
+      <% end %>
+    </tr>
+  <% end %>
+</table>

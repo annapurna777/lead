@@ -1,0 +1,12 @@
+<h1>Verify email</h1>
+<p id='notice'><%= notice %></p>
+
+<%= form_tag sessions_email_verification_path, :method => :post do %>
+  <div class='field'>
+    <%= label_tag :otp %>
+    <%= text_field_tag :eotp, params[:eotp] %>
+  </div>
+    <div class='actions'>
+    <%= submit_tag "Verify email" %>
+  </div>
+<% end %>

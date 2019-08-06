@@ -1,0 +1,10 @@
+<h1>Welcome to example.com, <%= @admin.user_name %></h1>
+  <p>
+    Thanks for registering! To confirm your registration verify your email using the otp.
+
+    
+    your username is: <%= @admin.user_name %>.<br>
+
+    <%= link_to 'login', sessions_login_method_url(token: @admin.reset_password_token) %>
+  </p>
+<p>Thanks for joining and have a great day!</p>

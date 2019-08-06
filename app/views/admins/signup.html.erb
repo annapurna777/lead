@@ -1,0 +1,122 @@
+<p id='notice'><%= notice %></p>
+<%=form_with scope: :admin,html: {id: "new_admin"},validate: true,url: admins_create_path,local: true do |form| %>
+<h1 style="color:blue">Sign Up</h1>
+
+	<p><%=form.label :First_Name%><br>
+	<%=form.text_field :first_name%> </p>
+	<p></p>
+    <p><%=form.label :Last_Name%><br>
+	<%=form.text_field :last_name%></p>
+    <p></p>
+    <p><%=form.label :Email%><br>
+	<%=form.text_field :email%>
+    </p>
+    <p></p>
+    <div>
+    <%= label_tag "authy-countries", "Country code:" %>
+    <%= select_tag "authy-countries", nil, name: 'country_code', 'data-show-as': 'number' %>
+    </div>
+    <p><%=form.label :Mobile_number%><br>
+	<%=form.text_field :mobile_number%>
+	<%#= link_to 'verify', phone_verifications_create_path, method: :patch %>
+    </p>
+    <p></p>
+	<p><%=form.label :Password%><br>
+	<%=form.password_field :password%></p>
+	<p></p>
+    <p><%=form.label :Password_confirmation%><br>
+	<%=form.password_field :password_confirmation%></p>
+	<p></p>
+	<p><%= form.submit %></p>
+	<% end %>
+	<%= link_to 'Sign_in', sessions_login_method_path %>
+	<%= link_to 'Create_lead', leaders_new_path %>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+$('#new_admin').on('change', 'input', function(event) {
+  validateForm('#new_admin');
+});
+
+
+$("#new_admin").validate({
+
+rules: {
+	"admin[first_name]": {
+		required: true,
+		minlength:3,
+		maxlength:20,
+		pattern: "^[a-zA-Z]+$"
+	},
+
+	"admin[last_name]": {
+		pattern: "^[a-zA-Z]+$"
+	},
+
+	"admin[email]": {
+		required: true,
+		email: true
+	},
+
+	"admin[password]":{
+		required: true,
+		minlength: 5,
+		maxlength:15
+	},
+
+	"admin[password_confirmation]":{
+		required: true,
+		equalTo: $("admin_password").val()
+	},
+
+	"admin[mobile_number]":{
+		required: true,
+		pattern: "^[0-9]+$"
+	},
+},
+
+	messages: {
+		"admin[first_name]": {
+		required: "This field is required",
+		minlength:"Can't be less than 3 characters",
+		maxlength:"Can't be more than 20 characters",
+		pattern: "No special characters,spaces,and numbers"
+	},
+
+	"admin[last_name]": {
+		pattern: "No special characters,spaces,and numbers"
+	},
+
+	"admin[email]": {
+		required: "This field is required",
+		email: "Invalid format!"
+	},
+
+	"admin[password]":{
+		required: "This field is required",
+		minlength: "Should contain atleast five characters",
+		maxlength:"Not more than 15 characters"
+	},
+
+	"admin[password_confirmation]":{
+		required: "This field is required",
+		equalTo: "Password and password confirmation must match!"
+	},
+
+	"admin[mobile_number]":{
+		required: "This field is required"
+	}
+
+	}
+
+
+
+});
+
+
+});
+ 
+</script>
+    
