@@ -1,6 +1,7 @@
+ <p id='notice'><%= notice %></p>
  <h1>How will you like to login? </h1>
 
-<%= form_tag(root_url, method: :get) do -%>
+<%= form_tag(login_path, method: :get) do -%>
  <div>
     <p>Login method</p>
     <%= label_tag "method_email", "Email: " %>
@@ -12,3 +13,4 @@
   </div>
   <%= button_tag "Choose" %>
 <% end %>
+<%= link_to 'Sign_up', admins_signup_path %>

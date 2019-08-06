@@ -21,8 +21,9 @@ def create
   @admin = Admin.find_by(mobile_number: params[:session][:mobile])
   elsif params[:session][:email]
   @admin = Admin.find_by(email: params[:session][:email])
+  
   end
-  if @admin.mobile_number.present?
+  if @admin
     if @admin.pverified
     
       if @admin && @admin.authenticate(params[:session][:password])
@@ -42,6 +43,8 @@ def create
     	session[:mobile] = @admin.id
     	redirect_to new_phone_verification_path,notice: "First verify your mobile_number!"
     end	
+    else
+  redirect_to sessions_login_method_path,notice: "No such user present!"
    end   
 end
 

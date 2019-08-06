@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   #post 'sessions/phone_verification'
   root 'sessions#login_method'
   get 'sessions/email_verify'
-  patch 'leaders/make_client'
+  get 'leaders/make_client'
   get 'leaders/show'
   get 'leaders/clients'
   resources :phone_verifications, :only => [:new,:create] do |p|

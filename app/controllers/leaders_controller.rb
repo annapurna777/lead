@@ -1,4 +1,5 @@
 class LeadersController < ApplicationController
+  protect_from_forgery with: :null_session
   before_action :check_status,only: [:show,:clients,:make_client]
   def new
   end
@@ -25,12 +26,13 @@ class LeadersController < ApplicationController
   end
 
   def clients
-    @leader=Leader.find_by(id: current_user.id)
+   #binding.pry
+   @leader=   Admin.find_by(id: current_user.id)
     @clients=Leader.where(made_by: @leader.id)
   end
 
   def make_client
-    #binding.pry
+   #binding.pry
     @leader=Leader.find_by(id: params[:format])
     @leader.made_by = current_user.id
     @leader.made_at =  TimeDifference.between(Time.now, @leader.created_at.to_datetime).in_each_component

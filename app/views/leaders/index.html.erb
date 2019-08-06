@@ -11,14 +11,18 @@
     <th>Document back</th>
     <th>Type</th>
     <th>Account_number</th>
+    <% if current_user.present? %>
     <th>Nominees</th>
     <th>Client of</th>
+    <% end %>
   </tr>
- 
+  <!-- <img src="/assets/1.png" alt="image not found" height="100px" width="100px"> -->
+
   <% @leaders.each do |lead| %>
     <tr>
       <td><%= lead.name %></td>
-      <td><%= image_tag lead.docf.url,size: "100x100"  if lead.docf_url %></td>
+
+      <td><%= image_tag lead.docf.url, size: "100x100"   %></td>
       <td><%= image_tag lead.docb.url,size: "100x100" if lead.docf_url %></td>
       <td><%= lead.lead_type %></td>
       <td><%= lead.account_number %></td>
@@ -30,10 +34,11 @@
      <!--  <td><%#= label_tag ,value="Already_client" %></td> -->
       <td><%= Admin.find_by(id: lead.made_by).user_name %></td>
       <% else %>
-      <td><%= link_to 'make_client', leaders_make_client_path(lead), method: :patch %></td>
+      <td><%= link_to 'make_client', leaders_make_client_path(lead) %></td>
       <% end %>
       
       <% end %>
+
     </tr>
   <% end %>
 </table>

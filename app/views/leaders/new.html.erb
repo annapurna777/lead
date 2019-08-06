@@ -27,6 +27,7 @@
    
 	<p><%= form.submit %></p>
 	<% end %>
+	<%= link_to 'All lead', leaders_path %>
 	<% if !(current_user.present?)%>
 	<%= link_to 'Sign_in', login_path %>
 	<%= link_to 'Sign_up', admins_signup_path %>
