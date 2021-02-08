@@ -23,7 +23,7 @@ gem 'uglifier', '>= 1.3.0'
 gem "jquery-validation-rails"
 gem 'jquery-rails'
 gem 'pry'
-gem 'carrierwave', '~> 1.3', '>= 1.3.1'
+gem 'carrierwave', '~> 1.3'
 gem 'mini_magick'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
